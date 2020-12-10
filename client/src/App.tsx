@@ -42,8 +42,10 @@ function App() {
         }
       >
         <option value='java'>Java</option>
-        <option value='javascript'>javascript</option>
+        <option value='javascript'>JavaScript</option>
         <option value='python'>Python</option>
+        <option value='html'>HTML</option>
+        <option value='css'>CSS</option>
       </select>
       <button onClick={showData}>Show</button>
 
