@@ -33,7 +33,7 @@ function App() {
   };
   return (
     <div className='App'>
-      <img src={logo} alt='Logo Vguess' />
+      <img src={logo} alt='Logo Vguess' className='logo' />
 
       <select
         name='languages'
@@ -47,9 +47,12 @@ function App() {
         <option value='html'>HTML</option>
         <option value='css'>CSS</option>
       </select>
-      <button onClick={showData}>Show</button>
+      <button className='btn' onClick={showData}>
+        Show
+      </button>
 
       <input
+        className='input'
         type='text'
         value={word}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -58,6 +61,7 @@ function App() {
         placeholder='Enter Word'
       />
       <input
+        className='input'
         type='text'
         value={hint}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -66,16 +70,18 @@ function App() {
         placeholder='Enter Hint'
       />
 
-      <button onClick={addQuestion}>Add Question</button>
+      <button className='btn' onClick={addQuestion}>
+        Add Question
+      </button>
 
       {data && (
         <>
-          <div>
+          <div className='question-wrapper'>
             <h1>{select.toUpperCase()} Questions</h1>
             {data.map((dt: resQuestion) => (
               <div className='cell'>
-                {dt.word}
-                {dt.hint}
+                <div className='word-cell'>{dt.word}</div>
+                <div className='word-hint'>{dt.hint}</div>
               </div>
             ))}
           </div>
