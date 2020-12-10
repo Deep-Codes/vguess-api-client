@@ -5,6 +5,9 @@ const mysqlConnection = require('../connection')
 let getJava ="SELECT * FROM `vguess`.java;"
 let getJavascript ="SELECT * FROM `vguess`.javascript;"
 
+let fillJava = "INSERT INTO `vguess`.java (word, hint) VALUES (? , ? )"
+let fillJavascript = "INSERT INTO `vguess`.javascript (word, hint) VALUES (? , ? )"
+
 // const jsData = require("../db/jsData.json");
 //const javaData = require("../db/javaData.json");
 
@@ -28,16 +31,27 @@ Router.get('/:id' , (req,res) => {
   }
 });
 
-Router.post('/post' , (req,res) => {
-  const userName = req.body.userName;
-  const userAge = req.body.userAge
-  mysqlConnection.query(fillTable, [userName,userAge] ,  (err , result) => {
-    if (err) {
-      res.status(500).send({ error: "Something failed!" }); 
-      return;
-    }
-    res.send('User Added To Database!')
-  })
+Router.post('/:id' , (req,res) => {
+  const word = req.body.word;
+  const hint = req.body.hint
+
+  if(req.params.id === 'javascript'){
+    mysqlConnection.query(fillJavascript, [word,hint] ,  (err , result) => {
+      if (err) {
+        res.status(500).send({ error: "Something failed!" }); 
+        return;
+      }
+      res.send('User Added To Database!')
+    })
+  }else if(req.params.id === 'java'){
+    mysqlConnection.query(fillJava, [word,hint] ,  (err , result) => {
+      if (err) {
+        res.status(500).send({ error: "Something failed!" }); 
+        return;
+      }
+      res.send('User Added To Database!')
+    })
+  }
 })
 
 

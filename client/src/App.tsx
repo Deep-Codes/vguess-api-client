@@ -25,7 +25,10 @@ function App() {
 
   const addQuestion = () => {
     if (hint && word !== '') {
-      console.log(hint, word);
+      Axios.post(`http://localhost:7000/api/${select}`, {
+        word: word,
+        hint: hint,
+      }).then(() => {});
     }
   };
   return (
