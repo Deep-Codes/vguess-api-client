@@ -28,5 +28,17 @@ Router.get('/:id' , (req,res) => {
   }
 });
 
+Router.post('/post' , (req,res) => {
+  const userName = req.body.userName;
+  const userAge = req.body.userAge
+  mysqlConnection.query(fillTable, [userName,userAge] ,  (err , result) => {
+    if (err) {
+      res.status(500).send({ error: "Something failed!" }); 
+      return;
+    }
+    res.send('User Added To Database!')
+  })
+})
+
 
 module.exports = Router;
