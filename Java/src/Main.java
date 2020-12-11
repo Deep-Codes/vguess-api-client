@@ -67,9 +67,6 @@ public class Main extends Application {
         return new String[]{randomGenWord , hint};
     }
 
-
-
-
     @Override
     public void start(Stage stage) throws Exception {
         /*
